@@ -10,9 +10,9 @@ class toyRobot:
     }
 
     def __init__(self):
-        self.x = None
-        self.y = None
-        self.facing = None
+        self.x = 0
+        self.y = 0
+        self.facing = "NORTH"
         self.table_size = 5
     
     def _is_within_bounds(self, x, y):
@@ -35,6 +35,8 @@ class toyRobot:
 
 
     def move
+
+
 
     def left
 
