@@ -42,6 +42,10 @@ if you are not in the directory then
 cd robot_simulator  
 python3 robot_cli.py
 
+to run the game with file input:
+
+python robot_cli.py commands.txt
+
 to run the test:
 
 python manage.py test robot
