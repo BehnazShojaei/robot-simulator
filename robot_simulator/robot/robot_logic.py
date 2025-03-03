@@ -68,7 +68,6 @@ class ToyRobot:
 
 
 
-
     def execute_command(self, command):
         try:
             command = command.strip().upper()  
@@ -76,16 +75,15 @@ class ToyRobot:
 
             if parts[0] == "PLACE":
                 if len(parts) < 2:
-                     return {"error": "Invalid format! Use: PLACE X,Y,FACING"}
+                    return {"error": "Invalid format! Use: PLACE X,Y,FACING"}
 
                 params = parts[1].replace(" ", "")  
                 values = params.split(",")
                 
-                if len(values) == 3:
+                if len(values) != 3:
                     return {"error": "Invalid format! Use: PLACE X,Y,FACING (e.g., PLACE 0,0,NORTH)"}
 
                 try:
-                
                     x, y = int(values[0]), int(values[1])
                     facing = values[2].upper()
                     
@@ -97,6 +95,7 @@ class ToyRobot:
                     return {"error": "Invalid input! X and Y must be integers."}
 
 
+                    
             elif command == "MOVE":
                 return self.move()
             elif command == "LEFT":
