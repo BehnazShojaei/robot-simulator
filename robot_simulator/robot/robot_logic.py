@@ -34,8 +34,18 @@ class toyRobot:
         return {"message": f"Placed at {x},{y},{facing}"}
 
 
-    def move
+    def move(self):
+        if self.x is None or self.y is None or self.facing is None:
+            return {"error": "Robot is not placed yet"}
+        
+        dx, dy = self.MOVEMENTS[self.facing]
+        new_x = self.x + dx
+        new_y = self.y + dy
 
+        if self._is_within_bounds(new_x, new_y):
+            self.x, self.y = new_x, new_y
+            return {"message": f"Moved to {self.x},{self.y},{self.facing}"}
+        return {"error": "MOVE command ignored. Robot would fall off the table"}
 
 
     def left
@@ -46,4 +56,3 @@ class toyRobot:
 
     def check command 
 
-    def check origin point
