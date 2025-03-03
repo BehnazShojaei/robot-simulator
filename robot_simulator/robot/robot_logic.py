@@ -1,4 +1,4 @@
-class toyRobot:
+class ToyRobot:
 
     DIRECTIONS = ["NORTH", "EAST", "SOUTH", "WEST"]
 
@@ -21,7 +21,7 @@ class toyRobot:
 
     def place(self, x, y, facing):
         
-        facing = facing.upper()
+        # facing = facing.upper()
          
         if not self._is_within_bounds(x, y):
             return {"error": f"Invalid position ({x},{y}). Must be within (0-{self.table_size-1}, 0-{self.table_size-1})."}
@@ -60,7 +60,52 @@ class toyRobot:
             self.facing = self.DIRECTIONS[(current_index +1) % 4 ]
               
 
-    def report
+    def report(self):
+        if self.x is not None and self.y is not None:
+            return {"x": self.x, "y": self.y, "facing": self.facing}
+        return {"error": "Robot is not placed yet"}
 
-    def check command 
 
+
+
+
+    def execute_command(self, command):
+        try:
+            command = command.strip().upper()  
+            parts = command.split(" ", 1)  
+
+            if parts[0] == "PLACE":
+                if len(parts) < 2:
+                     return {"error": "Invalid format! Use: PLACE X,Y,FACING"}
+
+                params = parts[1].replace(" ", "")  
+                values = params.split(",")
+                
+                if len(values) == 3:
+                    return {"error": "Invalid format! Use: PLACE X,Y,FACING (e.g., PLACE 0,0,NORTH)"}
+
+                try:
+                
+                    x, y = int(values[0]), int(values[1])
+                    facing = values[2].upper()
+                    
+                    if facing not in self.DIRECTIONS:
+                        return {"error": f"Invalid direction '{facing}'. Must be one of {self.DIRECTIONS}."}
+                    
+                    return self.place(x, y, facing)
+                except ValueError:
+                    return {"error": "Invalid input! X and Y must be integers."}
+
+
+            elif command == "MOVE":
+                return self.move()
+            elif command == "LEFT":
+                return self.left()
+            elif command == "RIGHT":
+                return self.right()
+            elif command == "REPORT":
+                return self.report()
+            return {"error": f"Invalid command '{command}'"}
+
+        except Exception as e:
+            return {"error": f"Command error: {str(e)}"}
