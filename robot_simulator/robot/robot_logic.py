@@ -48,10 +48,18 @@ class toyRobot:
         return {"error": "MOVE command ignored. Robot would fall off the table"}
 
 
-    def left
+    def left(self):
+        if self.facing:
+             current_index = self.DIRECTIONS.index(self.facing)
+             self.facing = self.DIRECTIONS[(current_index -1) % 4 ]
+              
 
-    def right
-    
+    def right(self):
+        if self.facing:
+            current_index = self.DIRECTIONS.index(self.facing)
+            self.facing = self.DIRECTIONS[(current_index +1) % 4 ]
+              
+
     def report
 
     def check command 
