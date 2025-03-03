@@ -19,7 +19,8 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv("../.env")
+load_dotenv()
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -96,11 +97,10 @@ WSGI_APPLICATION = 'robot_simulator.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config
-    (
-        default=os.environ.get('DATABASE_URL'),  
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),  
         conn_max_age=600,
-        ssl_require=True  
+        ssl_require=True
     )
 }
 
