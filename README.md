@@ -30,3 +30,18 @@ Two choices:
 - Handling multiple PLACE commands
 - Valid movement and prevent falls
 - Handle incorrect inputs. e.g. reject PLACE -1,-1,NORTH
+
+to run the game on cli:
+
+make sure you are at robot_simulator directory.
+in terminal : ls
+will show you:
+manage.py robot robot_cli.py robot_simulator
+
+if you are not in the directory then
+cd robot_simulator  
+python3 robot_cli.py
+
+to run the test:
+
+python manage.py test robot
