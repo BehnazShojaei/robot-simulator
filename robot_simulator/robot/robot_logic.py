@@ -10,18 +10,17 @@ class ToyRobot:
     }
 
     def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.facing = "NORTH"
+        self.x = None
+        self.y = None
+        self.facing = None
         self.table_size = 5
     
     def _is_within_bounds(self, x, y):
-         return 0 <= x < self.table_size and 0 <= y < self.table_size
+        return 0 <= x < self.table_size and 0 <= y < self.table_size
     
 
     def place(self, x, y, facing):
         
-        # facing = facing.upper()
          
         if not self._is_within_bounds(x, y):
             return {"error": f"Invalid position ({x},{y}). Must be within (0-{self.table_size-1}, 0-{self.table_size-1})."}
@@ -35,9 +34,7 @@ class ToyRobot:
 
 
     def move(self):
-        if self.x is None or self.y is None or self.facing is None:
-            return {"error": "Robot is not placed yet"}
-        
+       
         dx, dy = self.MOVEMENTS[self.facing]
         new_x = self.x + dx
         new_y = self.y + dy
@@ -52,13 +49,15 @@ class ToyRobot:
         if self.facing:
              current_index = self.DIRECTIONS.index(self.facing)
              self.facing = self.DIRECTIONS[(current_index -1) % 4 ]
+        return {"message": f"Turned Left. Now facing {self.facing}"}
+
               
 
     def right(self):
         if self.facing:
             current_index = self.DIRECTIONS.index(self.facing)
             self.facing = self.DIRECTIONS[(current_index +1) % 4 ]
-              
+        return {"message": f"Turned Right. Now facing {self.facing}"}    
 
     def report(self):
         if self.x is not None and self.y is not None:
@@ -72,6 +71,12 @@ class ToyRobot:
         try:
             command = command.strip().upper()  
             parts = command.split(" ", 1)  
+
+
+            if self.x is None or self.y is None or self.facing is None:
+                if parts[0] != "PLACE":
+                    return {"error": "First command must be PLACE X,Y,FACING to set the robot's position."}
+
 
             if parts[0] == "PLACE":
                 if len(parts) < 2:
@@ -93,7 +98,6 @@ class ToyRobot:
                     return self.place(x, y, facing)
                 except ValueError:
                     return {"error": "Invalid input! X and Y must be integers."}
-
 
                     
             elif command == "MOVE":
