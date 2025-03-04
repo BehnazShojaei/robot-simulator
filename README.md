@@ -88,6 +88,7 @@ robot-simulator/
 ```bash
 git clone https://github.com/BehnazShojaei/robot-simulator.git
 cd robot-simulator
+code .
 ```
 
 ### 2. Create a Virtual Environment
@@ -139,7 +140,6 @@ Please don't forget to save!
 To play the game via terminal:
 
 ```bash
-cd robot_simulator
 python3 robot_cli.py
 ```
 
