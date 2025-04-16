@@ -226,6 +226,19 @@ Alternatively, you can test it directly on the deployed API!
 
 ---
 
+🚧 **Notice: Application Currently Offline**
+
+To optimize hosting costs, the Heroku-hosted version of this app is temporarily offline due to the removal of the database add-on. This results in a generic "Application Error" message on Heroku.
+
+If you'd like to explore or test the application locally:
+
+1. Clone this repository
+2. Set up a local PostgreSQL instance
+3. Add your `DATABASE_URL` in a `.env` file
+4. Run the app using your preferred development setup
+
+If you'd like access to a temporary live version or have questions about setup, feel free to get in touch. I'm happy to assist.
+
 ## Using the Deployed API
 
 The API is deployed at:
